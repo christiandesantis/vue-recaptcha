@@ -16,6 +16,7 @@ export interface RecaptchaV2CommonOptions {
 export interface RecaptchaV2CheckboxOptions extends RecaptchaV2CommonOptions {
   theme?: 'dark' | 'light'
   size?: 'compact' | 'normal'
+  hl?: string
 }
 
 export interface RecaptchaV2InvisibleOptions extends RecaptchaV2CommonOptions {
@@ -96,10 +97,11 @@ export function normalizeScriptLoaderOptions(options: ScriptLoaderOptionsInput):
   return {
     ...options,
     recaptchaApiURL:
+      // eslint-disable-next-line @stylistic/js/operator-linebreak
       options.recaptchaApiURL ??
       (options.useRecaptchaNet
         ? 'https://www.recaptcha.net/recaptcha/api.js'
-        : 'https://www.google.com/recaptcha/api.js'),
+        : `https://www.google.com/recaptcha/api.js?hl=${options.params.hl || 'en'}`),
   }
 }
 

@@ -26,12 +26,14 @@ const props = withDefaults(
      * response of reCAPTCHA
      */
     modelValue?: string | null
+    hl?: string
   }>(),
   {
     as: 'div',
     size: 'normal',
     theme: 'light',
-  }
+    hl: 'en',
+  },
 )
 
 const emit = defineEmits<{
@@ -48,9 +50,10 @@ const { root } = useComponentV2(
     theme: props.theme,
     size: props.size,
     tabindex: props.tabindex,
+    hl: props.hl,
   },
   toRef(props, 'modelValue'),
-  emit
+  emit,
 )
 </script>
 
